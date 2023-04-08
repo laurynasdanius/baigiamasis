@@ -4,6 +4,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\EventController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,4 +33,16 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
+    //fix naming  here
+    Route::resource('events', EventController::class)->names([
+        'index' => 'events.index',
+        'create' => 'events.create',
+        'store' => 'events.store',
+        'show' => 'events.show',
+        'edit' => 'events.edit',
+        'update' => 'events.update',
+        'destroy' => 'events.destroy',
+    ]);
 });
+
+// Route::resource('events',EventController::class);
