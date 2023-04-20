@@ -7,7 +7,7 @@ use Illuminate\Database\Seeder;
 use App\Models\Event;
 use Carbon\Carbon;
 
-class EventSeeder extends Seeder
+class EventTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.

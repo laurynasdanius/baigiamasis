@@ -15,8 +15,19 @@ class EventController extends Controller
      */
     public function index()
     {
-        $events = Event::all();
-        return Inertia::render('Events/Index',['events' => $events]);
+        $events = Event::paginate(5)->through(function ($event) {
+            return [
+                'id' => $event->id,
+                'title' => $event->title,
+                'location' => $event->location,
+                'start_time' => $event->start_time,
+                'end_time' => $event->end_time,
+                'description' => $event->description,
+                // Add any other necessary fields here
+            ];
+        });
+        
+        return Inertia::render('Events/Index', ['events' => $events]);
     }
 
     /**
