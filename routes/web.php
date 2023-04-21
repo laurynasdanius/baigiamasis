@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\RoomController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -34,15 +36,20 @@ Route::middleware([
         return Inertia::render('Dashboard');
     })->name('dashboard');
     //fix naming  here
-    Route::resource('events', EventController::class)->names([
-        'index' => 'events.index',
-        'create' => 'events.create',
-        'store' => 'events.store',
-        'show' => 'events.show',
-        'edit' => 'events.edit',
-        'update' => 'events.update',
-        'destroy' => 'events.destroy',
-    ]);
+    Route::resource('events', EventController::class);
+    Route::resource('rooms', RoomController::class);
+
 });
+
+    // Route::resource('rooms', RoomController::class)->names([
+    //     'index' => 'rooms.index',
+    //     'create' => 'rooms.create',
+    //     'store' => 'rooms.store',
+    //     'show' => 'rooms.show',
+    //     'edit' => 'rooms.edit',
+    //     'update' => 'rooms.update',
+    //     'destroy' => 'rooms.destroy',
+    // ]);
+// });
 
 // Route::resource('events',EventController::class);

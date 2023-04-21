@@ -25,7 +25,7 @@ const submit = () => {
 </script>
 
 <template>
-    <Head title="Blog Create" />
+    <Head title="Event Create" />
 
     <AppLayout>
         <template #header>
