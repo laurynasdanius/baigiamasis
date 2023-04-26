@@ -6,7 +6,7 @@ use Inertia\Inertia;
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\RoomController;
-
+use App\Http\Controllers\CreateUserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -38,9 +38,9 @@ Route::middleware([
     //fix naming  here
     Route::resource('events', EventController::class);
     Route::resource('rooms', RoomController::class);
+    Route::resource('users', CreateUserController::class);
 
 });
-
     // Route::resource('rooms', RoomController::class)->names([
     //     'index' => 'rooms.index',
     //     'create' => 'rooms.create',
