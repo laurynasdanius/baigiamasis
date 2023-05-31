@@ -6,6 +6,18 @@ import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 
+// Add the section below
+import { createI18n } from 'vue-i18n';
+import messages from '@/lang/translations.js'
+
+const i18n = createI18n({
+    legacy: false,
+    locale: window.locale || 'lt', // Use the locale from the server, or fallback to 'lt'
+    fallbackLocale: 'en',
+    messages,
+});
+
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Laravel';
 
 createInertiaApp({
@@ -15,6 +27,7 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ZiggyVue, Ziggy)
+            .use(i18n)
             .mount(el);
     },
     progress: {

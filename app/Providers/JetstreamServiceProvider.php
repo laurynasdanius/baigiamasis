@@ -29,7 +29,7 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         $this->configurePermissions();
 
-        Jetstream::createTeamsUsing(CreateTeam::class);
+        // Jetstream::createTeamsUsing(CreateTeam::class);
         Jetstream::updateTeamNamesUsing(UpdateTeamName::class);
         Jetstream::addTeamMembersUsing(AddTeamMember::class);
         Jetstream::inviteTeamMembersUsing(InviteTeamMember::class);
@@ -45,17 +45,17 @@ class JetstreamServiceProvider extends ServiceProvider
     {
         Jetstream::defaultApiTokenPermissions(['read']);
 
-        Jetstream::role('admin', 'Administrator', [
+        Jetstream::role('admin', 'Administratorius', [
             'create',
             'read',
             'update',
             'delete',
         ])->description('Administrator users can perform any action.');
 
-        Jetstream::role('editor', 'Editor', [
+        Jetstream::role('user', 'Vartotojas', [
             'read',
             'create',
             'update',
-        ])->description('Editor users have the ability to read, create, and update.');
+        ])->description('Users have the ability to read, create, and update.');
     }
 }

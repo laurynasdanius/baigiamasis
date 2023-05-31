@@ -1,12 +1,12 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
 import PrimaryButton from '@/Components/PrimaryButton.vue';
 import TextInput from '@/Components/TextInput.vue';
+import AppLogo from '@/Components/AppLogo.vue';
 
 defineProps({
     canResetPassword: Boolean,
@@ -34,7 +34,7 @@ const submit = () => {
 
     <AuthenticationCard>
         <template #logo>
-            <AuthenticationCardLogo />
+            <AppLogo :imgMaxWidth="300" />
         </template>
 
         <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
@@ -43,7 +43,7 @@ const submit = () => {
 
         <form @submit.prevent="submit">
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" :value="$t('auth.email')" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -57,7 +57,7 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="password" value="Password" />
+                <InputLabel for="password" :value="$t('auth.password')" />
                 <TextInput
                     id="password"
                     v-model="form.password"
@@ -72,7 +72,7 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
+                    <span class="ml-2 text-sm text-gray-600">{{ $t('auth.remember_me') }}</span>
                 </label>
             </div>
 
@@ -82,7 +82,7 @@ const submit = () => {
                 </Link>
 
                 <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
+                    {{ $t('auth.login') }}
                 </PrimaryButton>
             </div>
         </form>

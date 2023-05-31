@@ -1,13 +1,16 @@
 <script setup>
 import AppLayout from '@/Layouts/AppLayout.vue';
 import Welcome from '@/Components/Welcome.vue';
+import { useI18n } from 'vue-i18n';
+
 </script>
 
 <template>
     <AppLayout title="Dashboard">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
+                {{ $t('nav.dashboard') }}
+
             </h2>
         </template>
 

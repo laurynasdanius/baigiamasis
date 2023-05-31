@@ -19,12 +19,7 @@ use App\Http\Controllers\CreateUserController;
 */
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    return Inertia::render('Auth/Login');
 });
 
 Route::middleware([
@@ -41,6 +36,10 @@ Route::middleware([
     Route::resource('users', CreateUserController::class);
 
 });
+
+// Route::any('/{any}', function () {
+//     return redirect()->route('login');
+// })->where('any', '.*');
     // Route::resource('rooms', RoomController::class)->names([
     //     'index' => 'rooms.index',
     //     'create' => 'rooms.create',
