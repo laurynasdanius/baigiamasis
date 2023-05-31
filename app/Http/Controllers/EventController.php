@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Event;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class EventController extends Controller
 {
@@ -126,4 +127,26 @@ class EventController extends Controller
 
         return redirect()->route('events.index')->with('message', 'Event Delete Successfully');
     }
+    /**
+     * Index view for the api.
+     *
+     * @param  \App\Models\Event  $Event
+     * @return \Illuminate\Http\Response
+     */
+    public function apiIndex(Request $request)
+    {
+        $events = Event::all()->map(function ($event) {
+            return [
+                'id' => $event->id,
+                'title' => $event->title,
+                'location' => $event->location,
+                'start_time' => $event->start_time,
+                'end_time' => $event->end_time,
+                'description' => $event->description,
+            ];
+        });
+
+        return response()->json($events);
+    }
+
 }
